@@ -1,21 +1,20 @@
+var XHRLoad = function( url, callback ) {
+	var request = new XMLHttpRequest();
+	request.open( 'GET', url, true );
+	request.addEventListener( 'load', function() {
+ 		callback( request.responseText );
+	} );
+	request.send();
+};
 
-
+/*
 var WGLDemo = ( function( wnd ) {
 
 	var module = {
 		initted: false
 	};
 
-	var gl, shaderProgram;
-	
-	var loadShader = function( url, callback ) {
-		var request = new XMLHttpRequest();
-		request.open( 'GET', url, true );
-		request.addEventListener( 'load', function() {
-     		callback( request.responseText );
-  		} );
-  		request.send();
-	}
+	var context, shaderProgram;
 
 	var loadShader = function( shaderUrl, type, callback ) {
 
@@ -48,13 +47,13 @@ var WGLDemo = ( function( wnd ) {
 
 	module.initialize = function(canvas, callback ) {
 
-		gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-		if ( gl === null ) {
+		context = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+		if ( context === null ) {
 			throw 'Error creating WebGL context';
 		}
 
-		gl.clearColor( 0, 0, 0, 1 );
-		gl.clear( gl.COLOR_BUFFER_BIT );
+		context.clearColor( 0, 0, 0, 1 );
+		context.clear( gl.COLOR_BUFFER_BIT );
 		
 		loadVertexShader( 'vertex.shader' );
 		loadFramentShader( 'fragment.shader' );
@@ -65,9 +64,11 @@ var WGLDemo = ( function( wnd ) {
 	return module;
 
 } )( this );
+*/
 
 var initDemo = function() {
-	var canvasElement = document.getElementById( 'target' );
-	WGLDemo.initialize( canvasElement );
-	
+	var renderer = new WebGL.Renderer( 500, 500 );
+	document.body.appendChild( renderer.domElement );
+	var shader = new WebGL.Shader( vertexSrc, fragmentSrc );
+	renderer.addShader( shader );
 }
