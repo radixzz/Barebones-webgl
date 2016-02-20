@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Initialization</title>
+	<script id="shader-fs" type="x-shader/x-fragment">
+		precision mediump float;
+		uniform vec4 u_FragColor;
+		
+		void main(void) {
+		    gl_FragColor = u_FragColor;
+		}
+
+	</script>
+	<script id="shader-vs" type="x-shader/x-vertex">
+		attribute vec4 a_Position;
+		void main(void) {
+		    gl_Position = a_Position;
+		    gl_PointSize = 4.0;
+		}
+
+	</script>
+	<script type="text/javascript" src="../lib/webgl-shader.js"></script>
+	<script type="text/javascript" src="../lib/webgl-renderer.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+	
+</head>
+<body onload="initDemo()">
+</body>
+</html>
